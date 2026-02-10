@@ -66,9 +66,10 @@ export const useDashboardStore = create<DashboardStore>((set) => ({
   toggleTheme: () =>
     set((state) => {
       const newTheme = state.theme === 'light' ? 'dark' : 'light';
-      // Update document class for theme
+      // Update document class and localStorage
       if (typeof document !== 'undefined') {
         document.documentElement.classList.toggle('dark', newTheme === 'dark');
+        localStorage.setItem('theme', newTheme);
       }
       return { theme: newTheme };
     }),
